@@ -1,2 +1,2 @@
 # M5StickCPlus-grundfos
-M5StickCPlus profos for controlling monotoring Grundfos ALPHA1 L circilating Pumps
+M5StickCPlus [PlatformIO](https://platformio.org) project for controlling/monotoring Grundfos ALPHA1 L Circulating Pumps
