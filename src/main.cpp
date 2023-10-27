@@ -1,5 +1,7 @@
 /*
-Description: Adjust the speed of FAN Unit through PWM.
+* Description: Adjust the speed of FAN Unit through PWM.
+* https://docs.m5stack.com/en/core/m5stickc_plus
+* https://github.com/m5stack/m5-docs/blob/master/docs/en/api/button.md
 */
 
 #include <M5StickCPlus.h>
@@ -89,6 +91,25 @@ void setup() {
 }
 
 void loop() {
+    M5.update();
+    if (M5.BtnA.wasReleased()) {  // If the button A is pressed. 
+        //M5.Lcd.print('A');
+        pwmMotor = 112;
+        Serial.print("A, PWM:");
+        Serial.println(pwmMotor);
+        M5.Lcd.setCursor(10, 20);
+        M5.Lcd.print("PWM: ");
+        M5.Lcd.print(pwmMotor);
+    } else if (M5.BtnB.wasReleased()) {  // If the button B is pressed. 
+        //M5.Lcd.print('B');
+        pwmMotor = 800;
+        Serial.print("B, PWM:");
+        Serial.println(pwmMotor);
+        M5.Lcd.setCursor(10, 20);
+        M5.Lcd.print("PWM: ");
+        M5.Lcd.print(pwmMotor);
+    }
+
     float pwmFloat;
     // put your main code here, to run repeatedly:
     //ledcWrite(ledChannel, 512);
@@ -100,9 +121,9 @@ void loop() {
         if(pwmLed > 900)
             pwmLed = 100;
         ledcWrite(ledChannel, pwmLed);
-        pwmMotor++;
-        if(pwmMotor > 950)
-            pwmMotor = 800;
+    //    pwmMotor++;
+        //if(pwmMotor > 950)
+        //    pwmMotor = 800;
         ledcWrite(fanChannel, pwmMotor);
     }
     if (now - lastMsg > 1000) {
